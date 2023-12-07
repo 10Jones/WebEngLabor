@@ -40,7 +40,7 @@ gespeichert werden und an andere weitergeben werden.
 Geladen wird das Image mit
 
 ```
-docker load -i webserver-image.tar deinbenutzername/webserver
+docker load -i webserver-image.tar
 ```
 
 ## DockerImage in Repo hochladen
