@@ -71,7 +71,7 @@ curl http://localhost:5000/v2/_catalog
 überprüft werden.
 
 ### Alternativ Dockerhub
-**Durch das hochladen auf DockerHub ist das Image für alle sichtbar, weswegen ein Lokales Repo im Firmen Umfeld empfolen wird!!!**
+**Durch das hochladen auf DockerHub ist das Image für alle sichtbar, weswegen ein Lokales Repo im Firmenumfeld empfolen wird!!!**
 
 
 Alternativ kann das Docker Image auch auf Dockerhub hochgeladen werden.
