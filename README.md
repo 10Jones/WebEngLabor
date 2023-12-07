@@ -98,12 +98,12 @@ docker run -p 80:80 --name webser deinbenutzername/webserver:latest
 gestartet werden.
 
 # Kubernetes
-Dieser Abschnitt setzt voraus, dass ein Docker Image in einem Repo verfugbar ist und gepulled werden kann. Wie ein Image in einem Repo verfugbar gemacht werden kann wird in dem Abschnitt Docker beschrieben
+Dieser Abschnitt setzt voraus, dass ein Docker Image in einem Repo verfügbar ist und gepulled werden kann. Wie ein Image in einem Repo verfugbar gemacht werden kann wird in dem Abschnitt Docker beschrieben
 
 ## Vorrausetzungen
 
 ### Kubernetes Single-Node Cluster Installieren
-Um Kubernetes verwenden zu können muss ein K8s Kluster installiert werden. mit Docker Desktop ist die in den Einstellungen möglich
+Um Kubernetes verwenden zu können muss ein K8s Kluster installiert werden. mit Docker Desktop ist dies in den Einstellungen möglich
 
 ![Alt-Text](./DockerDesktopKubernetesInstallieren.png)
 
@@ -119,7 +119,7 @@ Nun sollte im Trminal der Befehl "kubectl" zur Verfügung stehen
 
 ## Erster Test
 
-Um zu überprüfen ob alles funktioniert hat, kann ein test Pod erstellt werden
+Um zu Überprüfen ob alles funktioniert hat, kann ein test Pod erstellt werden
 
 Bei einem Lokalen Repo mit:
 ```
