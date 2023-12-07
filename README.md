@@ -58,7 +58,7 @@ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 Anschließend muss das Image auf das Repo gepushed werden 
 
 ```
-docker webserver:latest localhost:5000/deinbenutzername/webserver:latest
+docker tag deinbenutzername/webserver:latest localhost:5000/deinbenutzername/webserver:latest
 ```
 und 
 ```
