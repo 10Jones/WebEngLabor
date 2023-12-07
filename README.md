@@ -251,3 +251,12 @@ kubectl get service webserver-service
 ![Alt-Text](./externalIp.png)
 
 Nun ist der Inhalt des Docker Containers unter der 127.0.0.1:80 erreichbar. 
+
+## Skalieren des Clusters
+
+Mit dem Befehl
+```
+kubectl scale deployment webserver-deployment --replicas=10
+```
+
+kann die Anzahl der Pods verändert werden.
