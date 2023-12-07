@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: webserver-deployment
 spec:
-  replicas: 3  # Anzahl der gewünschten Replikate (kann nach Bedarf angepasst werden)
+  replicas: 3
   selector:
     matchLabels:
       app: webserver
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: webserver-container
-        image: localhost:5000/webserver:latest  # Lokale Docker-Repository-Adresse und Bildname
+        image: xknopix/webserver:latest
         ports:
         - containerPort: 80

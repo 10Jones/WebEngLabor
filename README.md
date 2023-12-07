@@ -29,8 +29,8 @@ docker build -t deinbenutzername/webserver:latest .
 
 webserver ist hierbei der Name des Images
 
-## DockerImage Speichern und Laden
- Das erstellte DockerImage kann mit dem Comand
+## DockerImage Speichern und Laden(Kann übersprungen werden)
+Das erstellte DockerImage kann mit dem Comand
 
 ```
 docker save -o webserver-image.tar deinbenutzername/webserver
@@ -45,7 +45,7 @@ docker load -i webserver-image.tar
 
 ## DockerImage in Repo hochladen
 
-Damit andere Anwendungen mit dem Image arbeiten können muss das Image in einem DockerRepo bereitgestellt werden
+Damit andere Anwendungen mit dem Image arbeiten können muss das Image in einem DockerRepo bereitgestellt werden. **Bitte nur Lokales Repo oder Alternativ Dockerhub ausführen**
 
 ### Lokales Repo
 
@@ -93,3 +93,161 @@ docker run -p 80:80 --name webser deinbenutzername/webserver:latest
 ```
 
 gestartet werden.
+
+# Kubernetes
+Dieser Abschnitt setzt voraus, dass ein Docker Image in einem Repo verfugbar ist und gepulled werden kann. Wie ein Image in einem Repo verfugbar gemacht werden kann wird in dem Abschnitt Docker beschrieben
+
+## Vorrausetzungen
+
+### Kubernetes Single-Node Cluster Installieren
+Um Kubernetes verwenden zu können muss ein K8s Kluster installiert werden. mit Docker Desktop ist die in den Einstellungen möglich
+
+![Alt-Text](./DockerDesktopKubernetesInstallieren.png)
+
+nun muss Apply & Restart gedrückt werden. 
+
+### Kubectl installieren
+```
+curl.exe -LO "https://dl.k8s.io/release/v1.28.4/bin/windows/amd64/kubectl.exe"
+```
+Im anschluss die Exe installieren
+
+Nun sollte im Trminal der Befehl "kubectl" zur Verfügung stehen 
+
+## Erster Test
+
+Um zu überprüfen ob alles funktioniert hat, kann ein test Pod erstellt werden
+
+Bei einem Lokalen Repo mit:
+```
+kubectl run webserver --image=localhost:5000/deinbenutzername/webserver:latest --port=80
+```
+
+Bei DockerHub mit:
+```
+kubectl run webserver --image=deinbenutzername/webserver:latest --port=80
+```
+
+Nun kann der Pod mit 
+```
+kubectl get pods
+```
+Angezeigt werden der Output sollte wie Folgt aussehen:
+![Alt-Text](./getPods.png)
+
+**Der Pod sollte nun wieder gelöscht werden da im Anschluss mit einer deployment.yaml gearbeitet wird, welche die Skalierung der Clusters vereinfacht**
+
+```
+kubectl delete pod webserver
+```
+
+## Deployment.yaml
+
+### Lokales Repo
+Eine Beispiel deployment.yaml sieht wie Folgt aus:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+      - name: webserver-container
+        image: localhost:5000/deinbenutzername/webserver:latest
+        ports:
+        - containerPort: 80
+```
+
+Mit dem Image Attribut wird angegeben mit welchem Docker Image das Cluster gebaut werden soll. Mit Replicas wird die Anzahl der pods bestimmt.
+
+Nach dem die Deployment.yaml erstellt wurde, muss diese noch geladen werden werden.
+
+```
+kubectl apply -f webserver-deployment.yaml
+```
+nun sollten 3 Pods erstellt werden
+
+![Alt-Text](./getPods3.png)
+
+### Dockerhub
+Eine Beispiel deployment.yaml sieht wie Folgt aus:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+      - name: webserver-container
+        image: deinbenutzername/webserver:latest
+        ports:
+        - containerPort: 80
+```
+
+Mit dem Image Attribut wird angegeben mit welchem Docker Image das Cluster gebaut werden soll. Mit Replicas wird die Anzahl der pods bestimmt.
+
+Nach dem die Deployment.yaml erstellt wurde, muss diese noch geladen werden werden.
+
+```
+kubectl apply -f webserver-deployment.yaml
+```
+nun sollten 3 Pods erstellt werden
+
+![Alt-Text](./getPods3.png)
+
+
+## Service.yaml
+
+In diesem Schritt wird das erstellte Cluster nach außen verfügbar gemacht. Dazu wird eine service.yaml benötigt, welche wie folgt aussieht:
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: webserver-service
+spec:
+  selector:
+    app: webserver
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer 
+```
+
+Die yaml muss nun noch auf das Cluster Angwendet werden.
+
+```
+kubectl apply -f webserver-service.yaml
+```
+
+Nun kann mit
+
+```
+kubectl get service webserver-service
+```
+überprüft werden ob eine externe IP zurverfügung steht.
+
+![Alt-Text](./externalIp.png)
+
+Nun ist der Inhalt des Docker Containers unter der 127.0.0.1:80 erreichbar. 
