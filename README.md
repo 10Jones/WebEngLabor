@@ -71,6 +71,9 @@ curl http://localhost:5000/v2/_catalog
 überprüft werden.
 
 ### Alternativ Dockerhub
+**Durch das hochladen auf DockerHub ist das Image für alle sichtbar, weswegen ein Lokales Repo im Firmen Umfeld empfolen wird!!!**
+
+
 Alternativ kann das Docker Image auch auf Dockerhub hochgeladen werden.
 
 ```
@@ -180,6 +183,7 @@ nun sollten 3 Pods erstellt werden
 ![Alt-Text](./getPods3.png)
 
 ### Dockerhub
+
 Eine Beispiel deployment.yaml sieht wie Folgt aus:
 
 ```
