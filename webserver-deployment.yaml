@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver-deployment
+spec:
+  replicas: 3  # Anzahl der gewünschten Replikate (kann nach Bedarf angepasst werden)
+  selector:
+    matchLabels:
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+      - name: webserver-container
+        image: localhost:5000/webserver:latest  # Lokale Docker-Repository-Adresse und Bildname
+        ports:
+        - containerPort: 80
