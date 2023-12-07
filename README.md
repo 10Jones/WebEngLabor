@@ -24,7 +24,7 @@ Es wird als Base Image ein Image genommen welches bereits einen Webserver laufen
 Nach dem das Dockerfile erstellt wurde, muss dieses zu einem Image gebaut werden. Dies geschieht mit dem folgenden Comand:
 
 ```
-docker build -t webserver:latest .
+docker build -t deinbenutzername/webserver:latest .
 ```
 
 webserver ist hierbei der Name des Images
@@ -33,14 +33,14 @@ webserver ist hierbei der Name des Images
  Das erstellte DockerImage kann mit dem Comand
 
 ```
-docker save -o webserver-image.tar webserver
+docker save -o webserver-image.tar deinbenutzername/webserver
 ```
 gespeichert werden und an andere weitergeben werden.
 
 Geladen wird das Image mit
 
 ```
-docker load -i webserver-image.tar webserver
+docker load -i webserver-image.tar deinbenutzername/webserver
 ```
 
 ## DockerImage in Repo hochladen
@@ -58,11 +58,11 @@ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 Anschließend muss das Image auf das Repo gepushed werden 
 
 ```
-docker webserver:latest localhost:5000/webserver:latest
+docker webserver:latest localhost:5000/deinbenutzername/webserver:latest
 ```
 und 
 ```
-docker push localhost:5000/webserver:latest
+docker push localhost:5000/deinbenutzername/webserver:latest
 ```
 Ob das image nun bereitgestellt wird kann mit
 ```
@@ -72,11 +72,6 @@ curl http://localhost:5000/v2/_catalog
 
 ### Alternativ Dockerhub
 Alternativ kann das Docker Image auch auf Dockerhub hochgeladen werden.
-
-Das Image muss nun mit dem folgenden Comand neu gebaut werden
-```
-docker build -t deinbenutzername/webserver:latest .
-```
 
 ```
 docker tag deinbenutzername/webserver:latest deinbenutzername/webserver:latest
