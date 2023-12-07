@@ -254,7 +254,7 @@ kubectl get service webserver-service
 
 ![Alt-Text](./externalIp.png)
 
-Nun ist der Inhalt des Docker Containers unter der 127.0.0.1:80 erreichbar. 
+Nun ist der Inhalt des Docker Containers unter 127.0.0.1:80 erreichbar. 
 
 ## Skalieren des Clusters
 
