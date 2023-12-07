@@ -115,7 +115,7 @@ curl.exe -LO "https://dl.k8s.io/release/v1.28.4/bin/windows/amd64/kubectl.exe"
 ```
 Im anschluss die Exe installiert werden.
 
-Nun sollte im Trminal der Befehl "kubectl" zur Verfügung stehen 
+Nun sollte im Terminal der Befehl "kubectl" zur Verfügung stehen 
 
 ## Erster Test
 
