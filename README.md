@@ -109,6 +109,8 @@ Um Kubernetes verwenden zu können muss ein K8s Kluster installiert werden. mit 
 
 nun muss Apply & Restart gedrückt werden. 
 
+Alternativ kann auch Minikube genutzt werden
+
 ### Kubectl installieren
 ```
 curl.exe -LO "https://dl.k8s.io/release/v1.28.4/bin/windows/amd64/kubectl.exe"
