@@ -95,7 +95,7 @@ Das Gebaute Docker Image kann nun mit
 docker run -p 80:80 --name webser deinbenutzername/webserver:latest
 ```
 
-gestartet werden.
+gestartet werden und ist unter 127.0.0.1:80 erreichbar. 
 
 # Kubernetes
 Dieser Abschnitt setzt voraus, dass ein Docker Image in einem Repo verfügbar ist und gepulled werden kann. Wie ein Image in einem Repo verfügbar gemacht werden kann wird in dem Abschnitt Docker beschrieben
@@ -108,6 +108,8 @@ Um Kubernetes verwenden zu können muss ein K8s Kluster installiert werden. mit 
 ![Alt-Text](./DockerDesktopKubernetesInstallieren.png)
 
 nun muss Apply & Restart gedrückt werden. 
+
+Alternativ kann auch Minikube genutzt werden
 
 ### Kubectl installieren
 ```
