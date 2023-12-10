@@ -98,7 +98,7 @@ docker run -p 80:80 --name webser deinbenutzername/webserver:latest
 gestartet werden.
 
 # Kubernetes
-Dieser Abschnitt setzt voraus, dass ein Docker Image in einem Repo verfügbar ist und gepulled werden kann. Wie ein Image in einem Repo verfugbar gemacht werden kann wird in dem Abschnitt Docker beschrieben
+Dieser Abschnitt setzt voraus, dass ein Docker Image in einem Repo verfügbar ist und gepulled werden kann. Wie ein Image in einem Repo verfügbar gemacht werden kann wird in dem Abschnitt Docker beschrieben
 
 ## Vorrausetzungen
 
