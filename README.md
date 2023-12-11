@@ -92,7 +92,7 @@ docker push deinbenutzername/webserver:latest
 Das Gebaute Docker Image kann nun mit
 
 ```
-docker run -p 80:80 --name webser deinbenutzername/webserver:latest
+docker run -p 80:80 --name webserver deinbenutzername/webserver:latest
 ```
 
 gestartet werden und ist unter 127.0.0.1:80 erreichbar. 
