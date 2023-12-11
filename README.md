@@ -91,6 +91,11 @@ docker push deinbenutzername/webserver:latest
 ## Docker Image Starten
 Das Gebaute Docker Image kann nun mit
 
+### Lokales Repo
+```
+docker run -p 80:80 --name webserver localhost:5000/xknopix/webserver:latest
+```
+### Docker Hub
 ```
 docker run -p 80:80 --name webserver deinbenutzername/webserver:latest
 ```
